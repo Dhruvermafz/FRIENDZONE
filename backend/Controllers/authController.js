@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const secretKey = "this is the secret key for now";
+const secretKey = process.env.JWT_SECRET;
 const User = require("../Models/userSchema");
 
 const signup = async (req, res) => {
