@@ -9,7 +9,7 @@ import {
   USER_LOGOUT,
   SET_ERROR_NULL,
 } from "../constants/authConstants";
-import { saveToken } from "../localStorage";
+import { saveToken } from "../utils/localStorage";
 import { API_BASE_URL } from "../utils/config";
 
 export const registerUser = (email, password) => async (dispatch) => {
