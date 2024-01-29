@@ -5,16 +5,23 @@ import {
   UserIcon,
   BellIcon,
   CogIcon,
+  BookmarkIcon,
 } from "@heroicons/react/24/outline";
 
 export const navigation = [
   { name: "Home", href: "/", icon: HomeIcon, current: true },
-  { name: "Photos", href: "/photos", icon: PhotoIcon, current: false },
-  { name: "Friends", href: "/friends", icon: UserGroupIcon, current: false },
+  { name: "Explore", href: "/explore", icon: PhotoIcon, current: false },
+  { name: "My Zone", href: "/friends", icon: UserGroupIcon, current: false },
   {
     name: "Notifications",
     href: "/notifications",
     icon: BellIcon,
+    current: false,
+  },
+  {
+    name: "Bookmark",
+    href: "/bookmark",
+    icon: BookmarkIcon,
     current: false,
   },
 ];

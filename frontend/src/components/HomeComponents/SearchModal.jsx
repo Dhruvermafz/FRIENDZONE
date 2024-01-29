@@ -15,6 +15,7 @@ import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import { InboxIcon } from "@heroicons/react/24/outline";
 import { ActivityIcon } from "../index";
+import { API_BASE_URL } from "../../utils/config";
 
 const SearchModal = ({ open, setOpen }) => {
   const [query, setQuery] = useState("");
@@ -36,7 +37,7 @@ const SearchModal = ({ open, setOpen }) => {
     setQuery(e.target.value);
     try {
       const { data } = await axios.get(
-        `http://localhost:8000/user/searchUser?searchInput=${e.target.value}`,
+        `${API_BASE_URL}/user/searchUser?searchInput=${e.target.value}`,
         { withCredentials: true }
       );
 
@@ -61,7 +62,7 @@ const SearchModal = ({ open, setOpen }) => {
   const addFriend = async (u) => {
     try {
       const response = await axios.post(
-        "http://localhost:8000/friend/sendFriendRequest",
+        `${API_BASE_URL}/friend/sendFriendRequest`,
         {
           recieverId: u._id,
         },

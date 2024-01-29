@@ -1,7 +1,8 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import Layout from "./Layout";
 import { Friends, Home, Notifications, SignIn, SignUp } from "../pages";
 import Photos from "../pages/Photos";
+import { ProfileCard } from "../components";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/photos",
+        path: "/explore",
         element: <Photos />,
       },
       {
@@ -24,6 +25,12 @@ const router = createBrowserRouter([
         path: "/notifications",
         element: <Notifications />,
       },
+      {
+        path: "/profile/:userName",
+        element: <ProfileCard/>,
+      
+      }
+    
     ],
   },
   {

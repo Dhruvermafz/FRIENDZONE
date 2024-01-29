@@ -12,6 +12,7 @@ import {
 } from "react-icons/ai";
 import { Button } from "../index";
 import axios from "axios";
+import { API_BASE_URL } from "../../utils/config";
 
 // Component definition for Feed
 const Feed = ({ feed }) => {
@@ -31,7 +32,7 @@ const Feed = ({ feed }) => {
     console.log(feed);
     try {
       const response = await axios.post(
-        "http://localhost:8000/post/add-comment",
+        `${API_BASE_URL}/post/add-comment`,
         {
           comment,
           post: feed,

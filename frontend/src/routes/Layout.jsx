@@ -7,7 +7,9 @@ import {
   DesktopSecondaryColumn,
 } from "../components";
 import { MyContext } from "../context/MyContext";
-
+//redux
+import { useDispatch, useSelector } from "react-redux";
+import { setActiveUser, setAllPosts, setAllUsers, setLoading } from "../features";
 const Layout = () => {
   const navigate = useNavigate();
   const { loggedUser, setLoggedUser, socket } = useContext(MyContext);

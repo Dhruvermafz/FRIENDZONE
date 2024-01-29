@@ -7,8 +7,9 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { MyContextProvier } from "./context/MyContext";
 import "./pages/custom-scrollbar.css";
 import socketIOClient from "socket.io-client";
+import { REACT_APP_API_URL } from "./utils/config";
 
-const socket = socketIOClient("http://localhost:8000");
+const socket = socketIOClient(REACT_APP_API_URL);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

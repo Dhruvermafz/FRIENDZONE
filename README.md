@@ -1,8 +1,10 @@
 # FRIENDZONE
 
-## Description
+## Introduction:zap:
 
-A social media website built using the MERN stack, where users can connect with others, share posts, and interact with content. EVERYONE COULD FRIENDZONE BUT NOT US.
+Friendzone is a full stack aplication, where users can connect with others, share posts, and interact with content. EVERYONE COULD FRIENDZONE YOU BUT NOT US. The idea is to make a place where you can find new friends, so, the app does a match with someone based on a easy to do personality test, then you can talk with all the people that you had a match with.
+
+[Live Link](https:/upbeat-jepsen-ece2e7.netlify.app)
 
 ## Technologies Used
 
@@ -15,12 +17,27 @@ A social media website built using the MERN stack, where users can connect with 
 
 ## Features
 
-- User registration and login
-- Create and edit user profiles
-- Post and delete content
-- Like and comment on posts
-- Send and accept friend requests
-- Real-time chat functionality for private messaging
+- Feed Posts
+- Sort Posts
+- Infinite Scrolling on Explore page
+- Add , Update & Delete Post
+- Add , Update & Delete Comment
+- Add or delete bookmark
+- User Profile Update
+- Follow / Unfollow
+- Search User
+- Like/unlike and Comment on Post
+- Realtime Storage
+
+  - All posts are stored in real time
+
+- Authentication:
+
+  - User Signup
+  - User Signin
+  - User Signout
+
+- Fully Responsive
 
 ## Getting Started
 

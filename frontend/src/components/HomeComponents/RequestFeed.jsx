@@ -5,6 +5,7 @@ import { useToast } from "@chakra-ui/react";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useContext } from "react";
 import { MyContext } from "../../context/MyContext";
+import { API_BASE_URL } from "../../utils/config";
 
 const RequestFeed = ({ user }) => {
   const toast = useToast();
@@ -15,7 +16,7 @@ const RequestFeed = ({ user }) => {
     console.log(u);
     try {
       const response = await axios.post(
-        "http://localhost:8000/friend/respond_FriendRequest",
+        `${API_BASE_URL}/friend/respond_FriendRequest`,
         {
           status: "accept",
           requested_user_Id: u.user, // .user => is this user's id
@@ -42,7 +43,7 @@ const RequestFeed = ({ user }) => {
     console.log(u);
     try {
       const response = await axios.post(
-        "http://localhost:8000/friend/respond_FriendRequest",
+        `${API_BASE_URL}/friend/respond_FriendRequest`,
         {
           status: "decline",
           requested_user_Id: u.user, // .user => is this user's id

@@ -8,6 +8,7 @@ import { BiLogOut } from "react-icons/bi";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
+import { API_BASE_URL } from "../../utils/config";
 
 const DesktopProfileModal = ({ open, setOpen }) => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const DesktopProfileModal = ({ open, setOpen }) => {
   const handleLogout = async () => {
     console.log("in handle logout");
     try {
-      await axios.post("http://localhost:8000/auth/logout", null, {
+      await axios.post(`${API_BASE_URL}/auth/logout`, null, {
         withCredentials: true,
       });
       localStorage.removeItem("userInfo");

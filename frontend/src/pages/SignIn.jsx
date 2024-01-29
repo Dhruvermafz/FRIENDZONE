@@ -13,6 +13,7 @@ import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "../context/MyContext";
+import { API_BASE_URL } from "../utils/config";
 
 // Define the SignIn component
 const SignIn = () => {
@@ -36,7 +37,7 @@ const SignIn = () => {
     try {
       // Make a POST request to the server to log in the user
       const { data } = await axios.post(
-        "http://localhost:8000/auth/login",
+        `${API_BASE_URL}/auth/login`,
         {
           email,
           password,
