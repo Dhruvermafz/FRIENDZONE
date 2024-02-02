@@ -5,18 +5,19 @@ import {
   MobileProfileModal,
   Button,
 } from "../index";
+import { useDispatch, useSelector } from "react-redux";
 import { randomNamesWithPictures } from "../../constants/Constants";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { MyContext } from "../../context/MyContext";
 import { GoPersonAdd } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
-
+import { setActiveUser, setAllUsers, setAllPosts } from "../../features";
 const DesktopSecondaryColumn = () => {
   const [friendReq, setFriendReq] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState();
-
+ 
   const { socket, friendReq_response } = useContext(MyContext);
   const navigate = useNavigate();
 
@@ -101,7 +102,7 @@ const DesktopSecondaryColumn = () => {
             {/* Contacts */}
             <div className="py-8">
               <div className="flex flex-row items-center justify-between uppercase">
-                <p className="font-semibold">CONTACTS</p>
+                <p className="font-semibold">Suggested Profiles</p>
               </div>
               <div className="flex flex-col gap-2 mt-4">
                 {/* Render contact cards with name, picture, and status */}
@@ -130,6 +131,8 @@ const DesktopSecondaryColumn = () => {
                 </Button>
               </MobileProfileModal>
             </div>
+
+           
           </div>
         </div>
       </div>

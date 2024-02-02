@@ -4,6 +4,7 @@ import { Notification } from "../components/index";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { MyContext } from "../context/MyContext";
+import { API_BASE_URL } from "../utils/config";
 
 // Notifications component displays a list of notifications
 const Notifications = () => {
@@ -11,7 +12,7 @@ const Notifications = () => {
 
   const fetchNotification = async () => {
     try {
-      const { data } = await axios.get("http://localhost:8000/notification", {
+      const { data } = await axios.get(`${API_BASE_URL}/notification`, {
         withCredentials: true,
       });
       console.log("notification--> ", data.noti);

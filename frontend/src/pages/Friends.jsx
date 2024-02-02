@@ -3,6 +3,7 @@ import { FriendCard, MobileProfileModal } from "../components";
 import axios from "axios";
 import { randomNamesWithPictures } from "../constants/Constants";
 import { MyContext } from "../context/MyContext";
+import { API_BASE_URL } from "../utils/config";
 // const people = [
 //   {
 //     name: "Whitney Francis",
@@ -60,7 +61,7 @@ const Friends = () => {
   const fetchFriends = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:8000/friend/fetchFriends",
+        `${API_BASE_URL}/friend/fetchFriends`,
         { withCredentials: true }
       );
       console.log(data);

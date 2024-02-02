@@ -9,13 +9,13 @@ const DeveloperSlogan = () => {
       Developed by
       {/* Render a link to the developer's GitHub profile */}
       <a
-        href="https://github.com/sameer-soni"
+        href="https://github.com/Dhruvermafz"
         target="_blank"
         className="font-bold cursor-pointer flex flex-row-reverse  items-center justify-center mx-1 "
         rel="noreferrer"
       >
         {/* Display the developer's name with an underline */}
-        <span className="underline underline-offset-4">Sameer</span>
+        <span className="underline underline-offset-4">Dhruv Verma</span>
       </a>
       {/* Display the text "With" */}
       With

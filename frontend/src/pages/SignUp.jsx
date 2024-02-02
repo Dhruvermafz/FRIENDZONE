@@ -15,6 +15,7 @@ import {
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../utils/config";
 
 // Define the Signup component
 const Signup = () => {
@@ -73,7 +74,7 @@ const Signup = () => {
           setLoading(false);
         });
 
-      console.log(res);
+      console.log(data);
     }
   };
 
@@ -96,7 +97,7 @@ const Signup = () => {
     try {
       // Send a POST request to the backend API to create a new account
       const { data } = await axios.post(
-        "http://localhost:8000/auth/signup",
+        `${API_BASE_URL}/auth/signup`,
         {
           username,
           email,

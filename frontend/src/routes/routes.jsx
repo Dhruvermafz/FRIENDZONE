@@ -1,7 +1,12 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import Layout from "./Layout";
 import { Friends, Home, Notifications, SignIn, SignUp } from "../pages";
 import Photos from "../pages/Photos";
+import { ProfileCard, CreatePost } from "../components";
+import CreatePin from "../pages/CreatePost";
+import Bookmark from "../pages/Bookmark/Bookmark";
+import About from "../pages/About";
+import UserProfile from "../pages/UserProfile";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +18,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/photos",
+        path: "/explore",
         element: <Photos />,
       },
       {
@@ -24,14 +29,32 @@ const router = createBrowserRouter([
         path: "/notifications",
         element: <Notifications />,
       },
+      {
+        path: "/profile/:userName",
+        element: <UserProfile/>,
+      
+      },
+      {
+        path: "/bookmark",
+        element: <Bookmark/>,
+      },
+      {
+        path: "/create-post",
+        element: <CreatePin/>
+      },
+      {
+        path: "/about",
+        element: <About/>,
+      }
+    
     ],
   },
   {
-    path: "/signUp/",
+    path: "/signup/",
     element: <SignUp />,
   },
   {
-    path: "/signIn",
+    path: "/signin",
     element: <SignIn />,
   },
 ]);

@@ -7,6 +7,7 @@ import { BiImageAdd } from "react-icons/bi";
 import { Button, InputFile } from "../index";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
+import { API_BASE_URL } from "../../utils/config";
 
 const PostContainer = () => {
   // Access the loggedUser from the context using useContext hook
@@ -33,7 +34,7 @@ const PostContainer = () => {
 
     if (pic === undefined) {
       alert("pic is undefined!");
-      retrun;
+      return;
     }
 
     if (
@@ -64,7 +65,7 @@ const PostContainer = () => {
   const createPost = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8000/post/create-post",
+        `${API_BASE_URL}/post/create-post`,
         {
           caption,
           img,

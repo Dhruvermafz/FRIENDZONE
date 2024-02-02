@@ -2,6 +2,7 @@ import axios from "axios";
 import { Feed, PostContainer, Stories } from "../components";
 import { useContext, useEffect, useState } from "react";
 import { MyContext } from "../context/MyContext";
+import { API_BASE_URL } from "../utils/config";
 
 // Define the Home component using a functional component
 export default function Home() {
@@ -12,7 +13,7 @@ export default function Home() {
   const fetchPosts = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:8000/post/fetch-post",
+        `${API_BASE_URL}/post/fetch-post`,
         { withCredentials: true }
       );
       setPosts(data.posts);

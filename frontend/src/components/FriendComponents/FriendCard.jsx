@@ -6,6 +6,7 @@ import { getRandomStatus } from "../../constants/Constants";
 import { BsFillPersonXFill } from "react-icons/bs";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
+import { API_BASE_URL } from "../../utils/config";
 
 const FriendCard = ({ person, user, setIsOpen, open, setSelectedUser }) => {
   const status = getRandomStatus();
@@ -23,7 +24,7 @@ const FriendCard = ({ person, user, setIsOpen, open, setSelectedUser }) => {
     console.log(person.name, " is remove");
     try {
       await axios.post(
-        "http://localhost:8000/friend/removeFriend",
+        `${API_BASE_URL}/friend/removeFriend`,
         {
           friend_id: person.user, //id of the user
         },
