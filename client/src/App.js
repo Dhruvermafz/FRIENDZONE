@@ -1,7 +1,5 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { RouterProvider } from "react-router-dom";
-import "./index.css";
 import router from "./routes/routes";
 import { ChakraProvider } from "@chakra-ui/react";
 import { MyContextProvier } from "./context/MyContext";

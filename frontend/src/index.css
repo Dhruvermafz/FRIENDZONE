@@ -1,22 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* styles.css */
-
-/* Define custom colors */
-:root {
-  --primary-shade: #00BFFF;
-  --seconday-shade: rgb(31, 41, 55);
-  --main-shade: #1E152A;
-  --text-color: #E7E7E7;
-  --borders-color: #9ca3af;
-  --contact-shade: #231830;
-}
-
-/* Define background image */
-.auth-bg-image {
-  background-image: url('./assets/Login-Sign-BackgroundImage.avif');
-}
 
 body {
   font-family: "Public Sans", sans-serif;
@@ -63,43 +47,4 @@ body {
   height: var(--slide-height);
   width: 100%;
   object-fit: cover;
-}
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
