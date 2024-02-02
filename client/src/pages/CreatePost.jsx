@@ -6,7 +6,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import toast, { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
 
-// import { client } from "../client";
+//  import { client } from "../client";
 import { Loader as Spinner } from "../components";
 import { categories } from "../constants/Constants";
 const CreatePin = ({ user }) => {
@@ -87,9 +87,9 @@ const CreatePin = ({ user }) => {
             padding: "20px",
           },
         });
-        client.create(doc).then(() => {
-          navigate("/");
-        });
+        // client.create(doc).then(() => {
+        //   navigate("/");
+        //});
       } else {
         setfields(true);
 

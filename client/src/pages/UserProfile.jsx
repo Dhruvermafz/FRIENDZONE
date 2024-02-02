@@ -92,7 +92,7 @@ const UserProfile = () => {
               )}
             </div>
           </div>
-          <div className="text-center mb-7">
+          {/* <div className="text-center mb-7">
             <button
               type="button"
               onClick={() => {
@@ -113,7 +113,7 @@ const UserProfile = () => {
             >
               Saved
             </button>
-          </div>
+          </div> */}
 
           {doubts?.length === 0 && (
             <div className="flex justify-center font-bold items-center w-full text-xl mt-2">

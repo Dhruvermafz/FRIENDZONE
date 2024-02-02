@@ -34,7 +34,7 @@ const PostContainer = () => {
 
     if (pic === undefined) {
       alert("pic is undefined!");
-      retrun;
+      return;
     }
 
     if (

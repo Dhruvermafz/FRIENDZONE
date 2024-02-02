@@ -74,7 +74,7 @@ const Signup = () => {
           setLoading(false);
         });
 
-      console.log(res);
+      console.log(data);
     }
   };
 
