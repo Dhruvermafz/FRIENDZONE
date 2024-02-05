@@ -11,7 +11,7 @@ import { AiOutlineBorderOuter } from "react-icons/ai";
 export const navigation = [
   { name: "Home", href: "/", icon: HomeIcon, current: true },
   { name: "Explore", href: "/explore", icon: PhotoIcon, current: false },
-  { name: "My Zone", href: "/friends", icon: UserGroupIcon, current: false },
+  { name: "My Zone", href: "/myzone", icon: UserGroupIcon, current: false },
   {
     name: "Notifications",
     href: "/notifications",

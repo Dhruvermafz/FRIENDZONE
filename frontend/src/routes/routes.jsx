@@ -8,6 +8,7 @@ import Bookmark from "../pages/Bookmark/Bookmark";
 import About from "../pages/About";
 import UserProfile from "../pages/UserProfile";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
         element: <Photos />,
       },
       {
-        path: "/friends",
+        path: "/myzone",
         element: <Friends />,
       },
       {

@@ -1,6 +1,6 @@
 # FRIENDZONE
 
-## Introduction:zap:
+## Introduction
 
 Friendzone is a full stack aplication, where users can connect with others, share posts, and interact with content. EVERYONE COULD FRIENDZONE YOU BUT NOT US. The idea is to make a place where you can find new friends, so, the app does a match with someone based on a easy to do personality test, then you can talk with all the people that you had a match with.
 

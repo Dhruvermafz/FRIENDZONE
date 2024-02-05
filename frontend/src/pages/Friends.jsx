@@ -93,6 +93,7 @@ const Friends = () => {
                   role="list"
                   className="grid grid-cols-1 gap-4 sm:grid-cols-2 py-5 px-5"
                 >
+                
                   {friends?.map((person) => (
                     <FriendCard
                       key={person.name}
