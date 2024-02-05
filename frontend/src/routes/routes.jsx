@@ -8,6 +8,7 @@ import Bookmark from "../pages/Bookmark/Bookmark";
 import About from "../pages/About";
 import UserProfile from "../pages/UserProfile";
 
+import Profile from "../pages/Profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile/:userName",
-        element: <UserProfile/>,
+        element: <Profile/>,
       
       },
       {

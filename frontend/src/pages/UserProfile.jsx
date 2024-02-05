@@ -21,30 +21,30 @@ const UserProfile = () => {
   const { loggedUser } = useContext(MyContext);
   const User = JSON.parse(localStorage.getItem("user")) || {};
 
-  useEffect(() => {
-    const query = userQuery(userId);
-    loggedUser.fetch(query)
-      .then((data) => {
-        setUser(data[0]);
-      })
-      .catch((error) => {
-        console.error("Error fetching user data:", error);
-      });
-  }, [userId, loggedUser]);
+  // useEffect(() => {
+  //   const query = userQuery(userId);
+  //   loggedUser.fetch(query)
+  //     .then((data) => {
+  //       setUser(data[0]);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching user data:", error);
+  //     });
+  // }, [userId, loggedUser]);
 
-  useEffect(() => {
-    const fetchData = () => {
-      const query = (text === "Created") ? userCreatedDoubtsQuery(userId) : userSavedDoubtsQuery(userId);
-      loggedUser.fetch(query)
-        .then((data) => {
-          setDoubts(data);
-        })
-        .catch((error) => {
-          console.error("Error fetching doubts:", error);
-        });
-    };
-    fetchData();
-  }, [text, userId, loggedUser]);
+  // useEffect(() => {
+  //   const fetchData = () => {
+  //     const query = (text === "Created") ? userCreatedDoubtsQuery(userId) : userSavedDoubtsQuery(userId);
+  //     loggedUser.fetch(query)
+  //       .then((data) => {
+  //         setDoubts(data);
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error fetching doubts:", error);
+  //       });
+  //   };
+  //   fetchData();
+  // }, [text, userId, loggedUser]);
 
   const logout = () => {
     localStorage.clear();

@@ -1,14 +1,9 @@
 import "./Profile.css";
-
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
-//firebase
 import { signOut } from "firebase/auth";
-import { auth } from "../../config/firebaseConfig";
-
+import { auth } from "../../utils/firebaseConfig";
 import { setFollowers, setFollowing } from "../../utils";
-
 import {
   DisplayUsersModal,
   EditProfileModal,
