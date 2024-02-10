@@ -8,8 +8,7 @@ import Bookmark from "../pages/Bookmark/Bookmark";
 import About from "../pages/About";
 import UserProfile from "../pages/UserProfile";
 
-import Profile from "../pages/Profile/Profile";
-
+import Profile from "../components/ProfileCard/Profile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,7 +31,7 @@ const router = createBrowserRouter([
         element: <Notifications />,
       },
       {
-        path: "/profile/:userName",
+        path: "/profile/:username",
         element: <Profile/>,
       
       },

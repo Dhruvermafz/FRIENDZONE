@@ -7,7 +7,6 @@ import { BiImageAdd } from "react-icons/bi";
 import { Button, InputFile } from "../index";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
-import { API_BASE_URL } from "../../utils/config";
 
 const PostContainer = () => {
   // Access the loggedUser from the context using useContext hook
@@ -34,7 +33,7 @@ const PostContainer = () => {
 
     if (pic === undefined) {
       alert("pic is undefined!");
-      return;
+      retrun;
     }
 
     if (
@@ -65,7 +64,7 @@ const PostContainer = () => {
   const createPost = async () => {
     try {
       const response = await axios.post(
-        `${API_BASE_URL}/post/create-post`,
+        "http://localhost:8000/post/create-post",
         {
           caption,
           img,
@@ -89,7 +88,6 @@ const PostContainer = () => {
 
   return (
     // Post Container - a flexbox container with a background color, padding, and rounded corners
-    
     <div className="bg-main-shade py-4 w-full my-5 rounded-md flex flex-col divide-y divide-white space-y-5 drop-shadow-lg">
       {/* User information section */}
       <div className="flex flex-row items-center px-2">

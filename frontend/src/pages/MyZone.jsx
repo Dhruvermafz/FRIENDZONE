@@ -1,34 +1,35 @@
 // Import necessary dependencies and components
 import { notifications } from "../constants/Constants";
 import { Notification } from "../components/index";
+import Groups from "../components/MyZone/Groups";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { MyContext } from "../context/MyContext";
 import { API_BASE_URL } from "../utils/config";
 
 // Notifications component displays a list of notifications
-const Notifications = () => {
-  const { noti, setNoti, socket } = useContext(MyContext);
+const MyZone = () => {
+  const { zone, setZone, socket } = useContext(MyContext);
 
-  const fetchNotification = async () => {
+  const fetchZones = async () => {
     try {
-      const { data } = await axios.get(`${API_BASE_URL}/notification`, {
+      const { data } = await axios.get(`${API_BASE_URL}/zones`, {
         withCredentials: true,
       });
-      console.log("notification--> ", data.noti);
-      setNoti(data.noti);
+      console.log("zone--> ", data.zone);
+      setZone(data.zone);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchNotification();
+    fetchZones();
   }, []);
 
   useEffect(() => {
-    socket.on("new friend request", () => {
-      fetchNotification();
+    socket.on("new zones", () => {
+      fetchZones();
     });
   }, [socket]);
 
@@ -45,16 +46,16 @@ const Notifications = () => {
               {/* Unordered list to display notifications */}
               <ul role="list" className="divide-y divide-gray-200 ">
                 {/* Map through the notifications and render Notification component for each */}
-                {noti.length > 0 ? (
-                  noti.map((notification) => (
-                    <Notification
-                      key={notification._id} // Unique key for React rendering
-                      notification={notification} // Pass the notification object to Notification component
+                {zone.length > 0 ? (
+                  zone.map((zones) => (
+                    <Groups
+                      key={zones._id} // Unique key for React rendering
+                      zone={zones} // Pass the notification object to Notification component
                     />
                   ))
                 ) : (
                   <div className="text-white text-center">
-                    No new Notification
+                    No new Zones for you, add some.
                   </div>
                 )}
               </ul>
@@ -67,4 +68,4 @@ const Notifications = () => {
   );
 };
 
-export default Notifications;
+export default MyZone;

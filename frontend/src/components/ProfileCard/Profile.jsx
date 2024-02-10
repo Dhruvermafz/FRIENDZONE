@@ -1,100 +1,78 @@
-import moment from 'moment';
-import { Link } from 'react-router-dom';
-import './Profile.scss';
-import { REACT_APP_API_URL as API } from '../../utils/config';
-const Profile = ({ user, blogs }) => {
-  return (
-    <section className='profile'>
-      <div className='profile__header'>
-        <figure>
-          <img
-            className='profile__img'
-            src={`${API}/user/photo/${user.userName}`}
-            alt='user profile'
-          />
-        </figure>
-        <div className='profile__header__user-info'>
-          <h5 className='profile__username'>{user.name}</h5>
-          <p className='profile__joined'>
-            Joined {moment(user.createdAt).fromNow()}
-          </p>
+import React, { useState, useContext } from "react";
+import { AiOutlineUserAdd } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
+// assuming you have a context named MyContext
+import { MyContext } from "../../context/MyContext";
+const Profile = ({ type, handler }) => {
+  const navigate = useNavigate();
+  const { loggedUser } = useContext(MyContext); // Accessing user data from context
+  const [open, setOpen] = useState(false);
 
-          <ul className='profile__contact'>
-            <li>
-              <a
-                className='profile__contact--link'
-                href='https://www.facebook.com/'
-              >
-                <img
-                  className='profile__contact__icon'
-                  src='../images/social-icons/facebook.svg'
-                  alt=''
-                />{' '}
-              </a>
-            </li>
-            <li>
-              <a
-                className='profile__contact--link'
-                href='https://www.twitter.com/'
-              >
-                <img
-                  className='profile__contact__icon'
-                  src='../images/social-icons/twitter.svg'
-                  alt=''
-                />
-              </a>
-            </li>
-            <li>
-              <a
-                className='profile__contact--link'
-                href='https://www.linkedin.com/'
-              >
-                <img
-                  className='profile__contact__icon'
-                  src='../images/social-icons/linkedin.svg'
-                  alt=''
-                />
-              </a>
-            </li>
-            <li>
-              <a
-                className='profile__contact--link'
-                href={`mailto:${user.email}`}
-              >
-                <img
-                  className='profile__contact__icon'
-                  src='../images/social-icons/email.svg'
-                  alt=''
-                />
-              </a>
-            </li>
-          </ul>
+  const getRandomRng = () => {
+    return Math.floor(Math.random() * 1000) + 0;
+  };
+
+  const navigateHandler = (userName) => {
+    navigate(`/profile/${userName}`);
+  };
+
+  const randomImage = `https://picsum.photos/seed/${getRandomRng()}/1920/1080`;
+
+  return (
+    <div className="flex justify-start items-center flex-col h-screen h-[100%] sm:h-[100%] md:h-[100%]">
+      <div className="relative w-full h-full">
+        <img
+          src={randomImage}
+          className="w-full h-full object-cover blur-sm"
+          loading="lazy"
+          alt="random bg"
+        />
+        <div className="absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0 bg-blackOverlay/50">
+          <div className="p-5">
+            <div className="max-w-xs border-t-4 border-sky-600 rounded w-full">
+              <div className="bg-white shadow-xl py-3 rounded-b-lg dark:bg-gray-800">
+                <div className="photo-wrapper p-2">
+                  <div
+                    className="rounded-full shadow-sm w-28 h-28 mx-auto mt-2"
+                    loading="lazy"
+                    onClick={() => navigateHandler(loggedUser?.username)}
+                  >
+                    {loggedUser?.pic ? (
+                      <img src={loggedUser?.pic} alt="avatar-img" />
+                    ) : (
+                      <h5 className="profile-card-text-avatar">
+                        {loggedUser?.name?.slice(0, 1).toUpperCase()}
+                      </h5>
+                    )}
+                  </div>
+                </div>
+                <div className="flex flex-col items-center p-2 text-center">
+                  <div
+                    className="profile-card-details cursor"
+                    onClick={() => navigateHandler(loggedUser?.username)}
+                  >
+                    <div className="fw-500">{loggedUser?.name}</div>
+                    <div className="profile-card-userName">@{loggedUser?.username}</div>
+                  </div>
+                  <div className="w-[90%] bg-sky-600/50 h-[1px] m-2"></div>
+                  <div className="flex flex-row w-full cursor-pointer text-3xl items-center justify-center dark:text-gray-50/50">
+                    {type === "suggest" && (
+                      <div
+                        className="profile-card-follow-btn"
+                        data-info="Follow"
+                        onClick={() => handler(loggedUser)}
+                      >
+                        <AiOutlineUserAdd />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div className='profile__user-blogs'>
-        <h2 className='profile__blogs-by'>
-          Latest blogs by{' '}
-          <span className='profile__blogs-by__name'>{user.name}</span>
-        </h2>
-
-        {blogs.map((blog) => (
-          <div className='profile__blog-card' key={blog._id}>
-            <Link href={`/blogs/${blog.slug}`}>
-              <a>
-                <h4 className='profile__blog-card__title'>{blog.title}</h4>
-              </a>
-            </Link>
-
-            <p className='profile__blog-card__posted'>
-              Posted &middot;
-              <span className='profile__blog-card__posted-date'>
-                {moment(blog.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
-              </span>
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
+    </div>
   );
 };
 

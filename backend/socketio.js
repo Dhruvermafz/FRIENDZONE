@@ -1,6 +1,8 @@
 const socket = require("socket.io");
 require("dotenv").config();
 let io;
+let users = [];
+let admins = [];
 
 const initializeSocketIO = (server) => {
   io = socket(server, {
