@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 //  import { client } from "../client";
 import { Loader as Spinner } from "../components";
 import { categories } from "../constants/Constants";
-const CreatePin = ({ user }) => {
+const CreatePin = ({ loggedUser }) => {
   const [title, setTitle] = useState("");
   const [about, setAbout] = useState("");
   const [destination, setDestination] = useState("");
@@ -70,14 +70,14 @@ const CreatePin = ({ user }) => {
               _ref: imageAssets?._id,
             },
           },
-          userId: user._id,
+          userId: loggedUser._id,
           postedBy: {
             _type: "postedBy",
-            _ref: user._id,
+            _ref: loggedUser._id,
           },
           category: categroy,
         };
-        toast.success("successfully added your pin", {
+        toast.success("successfully added your post", {
           duration: 5000,
           style: {
             background: "#fff",
@@ -161,21 +161,21 @@ const CreatePin = ({ user }) => {
             </div>
           </div>
           <div className="flex flex-1 flex-col gap-6 lg:pl-5 mt-5 w-full">
-            <input
+            {/* <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Add your title"
               className="outline-none text-2xl sm:text-3xl font-bold border-b-2 border-gray-200 p-2"
-            />
-            {user && (
+            /> */}
+            {loggedUser && (
               <div className="flex gap-2 mt-2 mb-2 items-center bg-white rounded-lg ">
                 <img
-                  src={user.image}
+                  src={loggedUser.pic}
                   className="w-10 h-10 rounded-full"
-                  alt="user-profile"
+                  alt="loggedUser-profile"
                 />
-                <p className="font-bold">{user.userName}</p>
+                <p className="font-bold">{loggedUser.username}</p>
               </div>
             )}
             <input
@@ -185,13 +185,13 @@ const CreatePin = ({ user }) => {
               placeholder="Tell everyone what your Pin is about"
               className="outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2"
             />
-            <input
+            {/* <input
               type="url"
               vlaue={destination}
               onChange={(e) => setDestination(e.target.value)}
               placeholder="Add a destination link"
               className="outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2"
-            />
+            /> */}
             <div className="flex flex-col">
               <div>
                 <p className="mb-2 font-semibold text:lg sm:text-xl">
@@ -230,7 +230,7 @@ const CreatePin = ({ user }) => {
                     onClick={savePin}
                     className="bg-red-500 text-white font-bold p-2 rounded-full w-28 outline-none hover:bg-red-700"
                   >
-                    Save Pin
+                    Save Post
                   </button>
                 )}
               </div>

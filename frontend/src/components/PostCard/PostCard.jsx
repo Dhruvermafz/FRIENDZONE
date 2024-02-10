@@ -41,7 +41,7 @@ const PostCard = ({ post }) => {
   );
 
   //active user profile
-  const userProfile = allUsers[activeUser?.userName];
+  const userProfile = allUsers[loggedUser?.userName];
 
   //handle like or undo like a post
   const likeHandler = () => {
