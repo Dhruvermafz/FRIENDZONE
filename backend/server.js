@@ -11,13 +11,14 @@ const { userRouter } = require("./Routes/user");
 const { friendRouter } = require("./Routes/friend");
 const { postRouter } = require("./Routes/post");
 
+const communityRouter = require("./Routes/community");
 //middelwares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: [process.env.API_BASE_URL, process.env.APP_BASE_URL],
+    origin: ["http://localhost:5173", "https://friendzone-nine.vercel.app"],
     credentials: true,
   })
 );
@@ -28,6 +29,7 @@ app.use("/auth", authRouter);
 app.use("/user", userRouter);
 app.use("/friend", friendRouter);
 app.use("/post", postRouter);
+app.use("/zone", communityRouter);
 
 const fetchNotification = require("./Controllers/fetchNotification");
 const { authVerify } = require("./Controllers/authController");

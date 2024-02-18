@@ -8,6 +8,7 @@ import { useContext, useState } from "react";
 import { MyContext } from "../../context/MyContext";
 import Button from "../ReUseableComponents/Button";
 import { BiLogOut } from "react-icons/bi";
+import { API_BASE_URL } from "../../utils/config";
 
 // Define the ProfileDropDown component
 const ProfileDropDown = () => {
@@ -28,7 +29,7 @@ const ProfileDropDown = () => {
     try {
       // Send a POST request to the logout endpoint to clear the session
       const { data } = await axios.post(
-        "http://localhost:8000/auth/logout",
+        `${API_BASE_URL}/auth/logout`,
         null,
         {
           withCredentials: true,

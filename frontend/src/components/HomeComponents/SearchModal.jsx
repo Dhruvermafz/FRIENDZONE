@@ -142,7 +142,7 @@ const SearchModal = ({ open, setOpen }) => {
                       aria-hidden="true"
                     />
                     <p className="mt-4 font-semibold ">
-                      Search for users and projects
+                      Search for users and posts.
                     </p>
                     <p className="mt-2 text-gray-500">
                       Quickly access users and groups by running a global

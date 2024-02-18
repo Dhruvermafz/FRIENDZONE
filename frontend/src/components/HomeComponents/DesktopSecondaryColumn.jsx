@@ -13,6 +13,7 @@ import { MyContext } from "../../context/MyContext";
 import { GoPersonAdd } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 import { setActiveUser, setAllUsers, setAllPosts } from "../../features";
+import { API_BASE_URL } from "../../utils/config";
 const DesktopSecondaryColumn = () => {
   const [friendReq, setFriendReq] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +27,7 @@ const DesktopSecondaryColumn = () => {
     console.log("in fetch friend req");
     try {
       const { data } = await axios.get(
-        "http://localhost:8000/friend/fetchFriendRequest",
+        `${API_BASE_URL}/friend/fetchFriendRequest`,
         { withCredentials: true }
       );
 
