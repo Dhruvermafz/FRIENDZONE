@@ -9,6 +9,7 @@ import About from "../pages/About";
 import UserProfile from "../pages/UserProfile";
 
 import Profile from "../components/ProfileCard/Profile";
+import Settings from "../components/Settings/Settings";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About/>,
+      },
+      {
+        path: "/settings",
+        element: <Settings/>
       }
     
     ],

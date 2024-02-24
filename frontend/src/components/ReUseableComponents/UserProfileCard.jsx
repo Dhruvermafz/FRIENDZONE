@@ -18,7 +18,7 @@ const UserProfileCard = () => {
     // User profile card container with click event to open the modal
     <div
       className="cursor-pointer flex flex-shrink-0 bg-primary-shade group transition duration-500 ease-in-out"
-    >
+    onClick={HandleModalOpen}>
       <div className="block w-full flex-shrink-0 py-4 px-5">
         <div className="flex items-center">
           <div className="border-2 border-white rounded-full">

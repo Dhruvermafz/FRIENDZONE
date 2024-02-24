@@ -8,6 +8,7 @@ import {
   BookmarkIcon,
 } from "@heroicons/react/24/outline";
 import { AiOutlineBorderOuter } from "react-icons/ai";
+import { FiSettings } from "react-icons/fi";
 export const navigation = [
   { name: "Home", href: "/", icon: HomeIcon, current: true },
   { name: "Explore", href: "/explore", icon: PhotoIcon, current: false },
@@ -28,6 +29,12 @@ export const navigation = [
     name: "About",
     href: "/about",
     icon: UserIcon,
+    current: false,
+  },
+  {
+    name: "Settings",
+    href: "/settings",
+    icon: FiSettings,
     current: false,
   },
 ];
