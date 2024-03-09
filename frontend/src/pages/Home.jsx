@@ -12,10 +12,9 @@ export default function Home() {
   // Function to fetch posts from the server
   const fetchPosts = async () => {
     try {
-      const { data } = await axios.get(
-        `${API_BASE_URL}/post/fetch-post`,
-        { withCredentials: true }
-      );
+      const { data } = await axios.get(`${API_BASE_URL}/post/fetch-post`, {
+        withCredentials: true,
+      });
       setPosts(data.posts);
     } catch (error) {
       console.log(error);
@@ -36,7 +35,6 @@ export default function Home() {
         {/* It creates a placeholder for the main content */}
         <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
           {/* Stories */}
-          <Stories />
 
           {/* Main content area */}
           <div className="flex flex-col items-center justify-start h-full rounded-lg md:px-5 py-5">

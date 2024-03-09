@@ -10,6 +10,7 @@ import UserProfile from "../pages/UserProfile";
 
 import Profile from "../components/ProfileCard/Profile";
 import Settings from "../components/Settings/Settings";
+import MyZone from "../pages/MyZone";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/myzone",
-        element: <Friends />,
+        element: <MyZone />,
       },
       {
         path: "/notifications",

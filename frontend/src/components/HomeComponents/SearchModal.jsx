@@ -145,8 +145,7 @@ const SearchModal = ({ open, setOpen }) => {
                       Search for users and posts.
                     </p>
                     <p className="mt-2 text-gray-500">
-                      Quickly access users and groups by running a global
-                      search.
+                      Quickly access users and groups by running a search.
                     </p>
                   </div>
                 )}

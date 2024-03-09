@@ -38,7 +38,8 @@ export default function About() {
                 <div className="flex flex-col items-center p-2 text-center">
                   <h3 className="flex items-center text-center text-md text-gray-900 font-medium leading-8 p-5 dark:text-gray-50/90">
                     made with <FaHeart className="ml-1 mr-1 text-red-600" /> by
-                    <u className="ml-1">Dhruv Verma</u>
+                    <a href="https://dhruvermafz.vercel.app" target="_blank">
+                    <u className="ml-1">Dhruv Verma</u></a>
                   </h3>
                   <div className="w-[90%] bg-sky-600/50 h-[1px] m-2"></div>
                   <div className="flex flex-row w-full cursor-pointer text-3xl items-center justify-center dark:text-gray-50/50">

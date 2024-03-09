@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../context/MyContext";
 const Profile = ({ type, handler }) => {
   const navigate = useNavigate();
-  const { loggedUser } = useContext(MyContext); // Accessing user data from context
+  const { loggedUser } = useContext(MyContext);
+  const [isUser, setIsUser] = useState(false);
   const [open, setOpen] = useState(false);
 
   const getRandomRng = () => {
@@ -35,7 +36,7 @@ const Profile = ({ type, handler }) => {
                   <div
                     className="rounded-full shadow-sm w-28 h-28 mx-auto mt-2"
                     loading="lazy"
-                    onClick={() => navigateHandler(loggedUser?.username)}
+                    onClick={() => navigateHandler(loggedUser?.userName)}
                   >
                     {loggedUser?.pic ? (
                       <img src={loggedUser?.pic} alt="avatar-img" />
@@ -52,7 +53,9 @@ const Profile = ({ type, handler }) => {
                     onClick={() => navigateHandler(loggedUser?.username)}
                   >
                     <div className="fw-500">{loggedUser?.name}</div>
-                    <div className="profile-card-userName">@{loggedUser?.username}</div>
+                    <div className="profile-card-userName">
+                      @{loggedUser?.username}
+                    </div>
                   </div>
                   <div className="w-[90%] bg-sky-600/50 h-[1px] m-2"></div>
                   <div className="flex flex-row w-full cursor-pointer text-3xl items-center justify-center dark:text-gray-50/50">
