@@ -1,10 +1,10 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 let REACT_APP_API_URL = "http://localhost:8000";
 if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
   REACT_APP_API_URL = "http://localhost:8000";
 }
+const API_URL = "https://friendzone-backend.onrender.com";
 const API_BASE_URL = REACT_APP_API_URL;
 const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/live-auctions/uploads";
 const UPLOAD_PRESET = "hgvapsg0";
@@ -27,4 +27,10 @@ const UPLOAD_PRESET = "hgvapsg0";
 // // Initialize Firebase
 // const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
-export { REACT_APP_API_URL, API_BASE_URL, CLOUDINARY_URL, UPLOAD_PRESET };
+export {
+  REACT_APP_API_URL,
+  API_BASE_URL,
+  CLOUDINARY_URL,
+  UPLOAD_PRESET,
+  API_URL,
+};

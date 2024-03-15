@@ -1,9 +1,10 @@
-// Import necessary modules and components
 import PropTypes from "prop-types";
 import { useContext, useEffect, useState } from "react";
 import { MyContext } from "../../context/MyContext";
+import "../../utils/";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { BsThreeDots, BsBookmark, BsBookmarkFill } from "react-icons/bs"; // Import the bookmark icons
+import { toast } from "react-toastify";
 import {
   AiOutlineLike,
   AiOutlineDislike,
@@ -18,7 +19,9 @@ import { Button } from "../index";
 import axios from "axios";
 import { API_BASE_URL } from "../../utils/config";
 import { Link } from "react-router-dom";
-
+import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
+import { HiOutlineUserCircle } from "react-icons/hi2";
+import { HiDotsHorizontal } from "react-icons/hi";
 // Define the Feed component
 const Feed = ({ feed }) => {
   // Define states and context
@@ -29,6 +32,7 @@ const Feed = ({ feed }) => {
   const [postComments, setPostComments] = useState([]);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [isOwner, setIsOwner] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
 
   // Function to add comments
   const addComments = async () => {
@@ -79,9 +83,19 @@ const Feed = ({ feed }) => {
     console.log("Delete");
   };
 
+  const handleLike = () => {
+    // Implement logic to toggle like status and update backend
+    setIsLiked(!isLiked);
+  };
+
   const handleReport = () => {
     // Implement report logic here
     console.log("Report");
+  };
+  const sharingHandler = (s) => {
+    // console.log(`https://blogweet.vercel.app${s}`);
+    navigator.clipboard.writeText(`https://blogweet.vercel.app${s}`);
+    toast.success(`Your link has been pasted to your Clipboard. Enjoy!`);
   };
   const openModal = () => {
     setShowModal(true);
@@ -126,7 +140,26 @@ const Feed = ({ feed }) => {
                   <div className="py-1">
                     {isOwner && (
                       <>
-                        <button
+                        <Menu>
+                          <MenuButton
+                            as={Button}
+                            rightIcon={<HiDotsHorizontal />}
+                          >
+                            <HiOutlineUserCircle /> Public
+                          </MenuButton>
+                          <MenuList>
+                            <MenuItem>
+                              <HiOutlineUserCircle /> Public
+                            </MenuItem>
+                            <MenuItem>
+                              <HiOutlineUserCircle /> Only me
+                            </MenuItem>
+                            <MenuItem>
+                              <HiOutlineUserCircle /> Share
+                            </MenuItem>
+                          </MenuList>
+                        </Menu>
+                        {/* <button
                           onClick={handleEdit}
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                         >
@@ -137,7 +170,7 @@ const Feed = ({ feed }) => {
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                         >
                           Delete
-                        </button>
+                        </button> */}
                       </>
                     )}
                     <button
@@ -155,6 +188,30 @@ const Feed = ({ feed }) => {
                   </div>
                 </div>
               )}
+              <Menu>
+                <MenuButton as={Button} rightIcon={<HiDotsHorizontal />}>
+                  <HiOutlineUserCircle /> Public
+                </MenuButton>
+                <MenuList>
+                  {isOwner && (
+                    <>
+                      <MenuItem onClick={handleEdit}>
+                        <HiOutlineUserCircle /> Public
+                      </MenuItem>
+                      <MenuItem onClick={handleDelete}>
+                        <HiOutlineUserCircle /> Only me
+                      </MenuItem>
+                      <MenuItem onClick={handleReport}>
+                        <HiOutlineUserCircle /> Share
+                      </MenuItem>
+                    </>
+                  )}
+                  <MenuItem onClick={handleReport}>Report Post</MenuItem>
+                  <MenuItem onClick={toggleBookmark}>
+                    {isBookmarked ? "Remove Bookmark" : "Bookmark"}
+                  </MenuItem>
+                </MenuList>
+              </Menu>
             </div>
           </div>
         </div>
@@ -165,21 +222,27 @@ const Feed = ({ feed }) => {
         />
         <div className="flex flex-row w-full items-center justify-between px-2 pt-4">
           <span
-            onClick={() => console.log("image liked")}
+            onClick={handleLike}
             className="flex flex-row items-center justify-center"
           >
-            <AiOutlineLike className="w-7 h-7" />
-            {/* <p className="font-bold ml-1">Like</p> */}
+            {isLiked ? (
+              <AiOutlineLike className="w-7 h-7 text-primary-shade" />
+            ) : (
+              <AiOutlineLike className="w-7 h-7" />
+            )}
           </span>
-
-          <span
-            onClick={() => console.log("image share")}
-            className="flex flex-row items-center justify-center"
-          >
-            <AiOutlineShareAlt className="w-5 h-5" />
-            {/* <p className="font-bold ml-1">Share</p> */}
+          <span className="flex flex-row items-center justify-center">
+            <button
+              className="expandElement"
+              onClick={() =>
+                sharingHandler(
+                  `/user/${feed.owner.usernamereplaceAll(" ", "-")}/${post.id}`
+                )
+              }
+            >
+              <AiOutlineShareAlt className="w-5 h-5" />
+            </button>
           </span>
-          {/* Bookmark button */}
           <span
             onClick={toggleBookmark}
             className="flex flex-row items-center justify-center"
@@ -189,7 +252,6 @@ const Feed = ({ feed }) => {
             ) : (
               <BsBookmark className="w-7 h-7" />
             )}
-            {/* <p className="font-bold ml-1">Bookmark</p> */}
           </span>
         </div>
       </div>

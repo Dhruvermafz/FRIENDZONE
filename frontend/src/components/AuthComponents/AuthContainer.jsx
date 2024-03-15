@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import authBanner from "../../assets/banner.png";
 
 // Define the AuthContainer component
 export default function AuthContainer({ children }) {

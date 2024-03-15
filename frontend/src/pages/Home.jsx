@@ -4,7 +4,6 @@ import { useContext, useEffect, useState } from "react";
 import { MyContext } from "../context/MyContext";
 import { API_BASE_URL } from "../utils/config";
 
-// Define the Home component using a functional component
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const { fetchPostAgain } = useContext(MyContext);

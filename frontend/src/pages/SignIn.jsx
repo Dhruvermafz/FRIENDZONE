@@ -91,7 +91,7 @@ const SignIn = () => {
         {/* Display the FormHeader component with appropriate props */}
         <FormHeader
           headline="Log in to your account"
-          text="create a brand new account today"
+          text="create a new account"
           isUnderlined={true}
           to="/signup"
         />
@@ -116,6 +116,12 @@ const SignIn = () => {
           />
           <PrimaryButton type="submit">Sign In</PrimaryButton>
         </Form>
+
+        <FormHeader
+          text="Forgot Password?"
+          isUnderlined={true}
+          to="/forgot_password"
+        />
 
         {/* Display the DeveloperSlogan component */}
         <DeveloperSlogan />

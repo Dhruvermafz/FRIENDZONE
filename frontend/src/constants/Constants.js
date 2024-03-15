@@ -6,6 +6,8 @@ import {
   BellIcon,
   CogIcon,
   BookmarkIcon,
+  BoltIcon,
+  BoltSlashIcon,
 } from "@heroicons/react/24/outline";
 import { AiOutlineBorderOuter } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";

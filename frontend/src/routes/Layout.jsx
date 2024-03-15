@@ -16,7 +16,6 @@ const Layout = () => {
   useEffect(() => {
     console.log(loggedUser);
     if (!loggedUser) {
-      // setLoggedUser(""); // You might uncomment this line if needed to set the logged user to an empty state
       navigate("/signin");
     }
   }, []);

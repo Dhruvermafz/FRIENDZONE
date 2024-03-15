@@ -106,7 +106,11 @@ const PostCard = ({ post }) => {
       return bookmarkBtn;
     }
   };
-
+  const sharingHandler = (s) => {
+    // console.log(`https://blogweet.vercel.app${s}`);
+    navigator.clipboard.writeText(`https://blogweet.vercel.app${s}`);
+    toast.success(`Your link has been pasted to your Clipboard. Enjoy!`);
+  };
   //close edit modal
   const modalHandler = () => {
     setToggleEditPostModal(false);
@@ -219,6 +223,16 @@ const PostCard = ({ post }) => {
           <div className="postCard-details flex ai-center">
             {bookmarkHandler()}
           </div>
+          <button
+            className="expandElement"
+            onClick={() =>
+              sharingHandler(
+                `/user/${post.author.name.replaceAll(" ", "-")}/${post.id}`
+              )
+            }
+          >
+            <i className="bx bxs-share-alt"></i>
+          </button>
         </div>
         {post.likeCount > 0 && (
           <div className="secondary-text-color">

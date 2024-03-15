@@ -11,6 +11,7 @@ import UserProfile from "../pages/UserProfile";
 import Profile from "../components/ProfileCard/Profile";
 import Settings from "../components/Settings/Settings";
 import MyZone from "../pages/MyZone";
+import ForgotPassword from "../pages/ForgotPassword";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,26 +35,24 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile/:username",
-        element: <Profile/>,
-      
+        element: <Profile />,
       },
       {
         path: "/bookmark",
-        element: <Bookmark/>,
+        element: <Bookmark />,
       },
       {
         path: "/create-post",
-        element: <CreatePin/>
+        element: <CreatePin />,
       },
       {
         path: "/about",
-        element: <About/>,
+        element: <About />,
       },
       {
         path: "/settings",
-        element: <Settings/>
-      }
-    
+        element: <Settings />,
+      },
     ],
   },
   {
@@ -63,6 +62,10 @@ const router = createBrowserRouter([
   {
     path: "/signin",
     element: <SignIn />,
+  },
+  {
+    path: "/forgot_password",
+    element: <ForgotPassword />,
   },
 ]);
 

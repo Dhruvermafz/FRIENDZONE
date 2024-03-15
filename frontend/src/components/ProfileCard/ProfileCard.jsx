@@ -1,5 +1,4 @@
 import "./ProfileCard.css";
-
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
