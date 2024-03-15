@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 let REACT_APP_API_URL = "http://localhost:8000";
 if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
-  REACT_APP_API_URL = "http://localhost:8000";
+  REACT_APP_API_URL = "https://friendzone-backend.onrender.com";
 }
 const API_URL = "https://friendzone-backend.onrender.com";
 const API_BASE_URL = REACT_APP_API_URL;
