@@ -1,55 +1,56 @@
+import { useEffect, useContext, useState } from "react";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
 import { MyContext } from "../context/MyContext";
-import { API_BASE_URL } from "../utils/config";
+import { Container, Heading } from "@chakra-ui/react";
 import CreateGroup from "../components/MyZone/Zone/CreateGroup";
+import { API_BASE_URL } from "../utils/config";
+import TabsComponent from "../components/MyZone/TabsComponent";
+import Group from "../components/MyZone/Group";
+const GroupComponent = () => {
+  const { setZone, socket } = useContext(MyContext);
+  const [groups, setGroups] = useState([]);
 
-// Notifications component displays a list of notifications
-const MyZone = () => {
-  const { zone, setZone, socket } = useContext(MyContext);
-
-  const fetchZones = async () => {
+  const fetchGroups = async () => {
     try {
-      const { data } = await axios.get(`${API_BASE_URL}/zones`, {
+      const { data } = await axios.get(`${API_BASE_URL}/groups`, {
         withCredentials: true,
       });
-      console.log("zone--> ", data.zone);
-      setZone(data.zone);
+      setGroups(data.groups);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchZones();
+    fetchGroups();
   }, []);
 
   useEffect(() => {
-    socket.on("new zones", () => {
-      fetchZones();
+    socket.on("new groups", () => {
+      fetchGroups();
     });
   }, [socket]);
 
   return (
-    <>
-      
-    {/* <!-- Main Content start --> */}
-    <main class="main-content">
-        <div class="container">
-            <div class="row">
-               
-                <div class="col-xl-9 col-lg-8">
-                    <div class="head-area mb-5">
-                        <h6>Pages</h6>
-                    </div>
-                   <CreateGroup/>
-                </div>
-            </div>
-        </div>
-    </main>
-    {/* <!-- Main Content end --> */}
-    </>
+    <Container maxW="container.xl">
+      <Heading as="h1" mb="5">
+        Group
+      </Heading>
+      <CreateGroup />
+      <TabsComponent />
+      <div className="row">
+        {groups.map((group) => (
+          <div className="col-xl-4 col-sm-6 col-8" key={group._id}>
+            <Group
+              groupName={group.name}
+              groupType={group.type}
+              memberCount={group.members.length}
+            />
+          </div>
+        ))}
+      </div>
+    </Container>
   );
 };
 
-export default MyZone;
+export default GroupComponent;

@@ -1,23 +1,33 @@
-import React, { Fragment } from 'react';
+import { Box, Text, Button } from "@chakra-ui/react";
 
-import Join from './Join';
-
-const Group = ({ group, openLargeView }) => {
-    const { _id, name, course, members, max_members } = group;
-
-    return (
-        <div className="card-row">
-            <div className="profile-header">
-                <h1 className="peer-text row-title"> {name} </h1>
-                <p className="peer-text peer-small"> {course} </p>
-                <h2 className="peer-text right-row-text"> {members.length}/{max_members} </h2>
-            </div>
-            <div className="profile-button-group">
-                    <button className="btn-small" onClick={() => openLargeView(_id)}> More </button>
-                    <Join group={group} />
-            </div>
-        </div>
-    )
-}
+const Group = ({ groupName, groupType, memberCount }) => {
+  return (
+    <Box
+      borderWidth="1px"
+      borderRadius="lg"
+      p="4"
+      mb="4"
+      boxShadow="md"
+      maxW="sm"
+    >
+      <img
+        src="assets/images/group-avatar-1.png"
+        alt="Group Avatar"
+        className="avatar-img max-un"
+      />
+      <Text mt="2" fontWeight="semibold" fontSize="xl">
+        {groupName}
+      </Text>
+      <Text mt="2">{groupType}</Text>
+      <Box d="flex" mt="2" alignItems="center" justifyContent="center">
+        <Text>{memberCount} Members</Text>
+      </Box>
+      <Box mt="4" d="flex" justifyContent="space-between">
+        <Button colorScheme="blue">Joined</Button>
+        <Button colorScheme="green">Invite</Button>
+      </Box>
+    </Box>
+  );
+};
 
 export default Group;

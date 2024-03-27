@@ -12,6 +12,7 @@ const MyContextProvier = ({ children, socket }) => {
   const [fetchPostAgain, setFetchPostAgain] = useState(false);
   const [noti, setNoti] = useState([]);
   const [bookmarks, setBookmarks] = useState([]);
+  const [zone, setZone] = useState([]);
 
   return (
     <MyContext.Provider
@@ -27,6 +28,8 @@ const MyContextProvier = ({ children, socket }) => {
         setNoti,
         bookmarks,
         setBookmarks,
+        zone,
+        setZone,
       }}
     >
       {children}

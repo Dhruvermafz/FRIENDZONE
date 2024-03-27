@@ -1,9 +1,11 @@
 import "./Profile.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useContext } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../../utils/firebaseConfig";
 import { setFollowers, setFollowing } from "../../utils";
+import { MyContext } from "../../context/MyContext";
 import {
   DisplayUsersModal,
   EditProfileModal,
@@ -13,8 +15,10 @@ import { useState } from "react";
 
 const Profile = () => {
   const { userName } = useParams();
+  const { loggedUser } = useContext(MyContext);
+
   const navigate = useNavigate();
-  const { activeUser, allUsers } = useSelector((state) => state.users);
+  const { allUsers } = useSelector((state) => state.users);
   const { allPosts } = useSelector((state) => state.posts);
 
   const [viewUsersModal, setViewUsersModal] = useState(false);
@@ -24,32 +28,49 @@ const Profile = () => {
   const profile = allUsers && allUsers[userName];
 
   //handle signout
-  const signoutHanler = async () => {
+  const handleLogout = async () => {
     try {
-      await signOut(auth);
+      // Send a POST request to the logout endpoint to clear the session
+      const { data } = await axios.post(`${API_BASE_URL}/auth/logout`, null, {
+        withCredentials: true,
+      });
+
+      // Remove user data from local storage
+      localStorage.removeItem("userInfo");
+
+      // Show a success toast message to the user
+      toast({
+        title: `${data.message}`,
+        status: "success",
+        duration: 2000,
+        position: "top",
+        isClosable: true,
+      });
+
+      // Navigate the user to the signin page after successful logout
       navigate("/signin");
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
     }
   };
 
   //handle following
   const followHandler = () => {
     //Increase follower in the followed user a/c
-    setFollowers(profile, activeUser.userName, "inc");
+    setFollowers(profile, loggedUser.userName, "inc");
 
     //increase following in the active user a/c
-    const activeUserProfile = allUsers[activeUser.userName];
+    const activeUserProfile = allUsers[loggedUser.userName];
     setFollowing(activeUserProfile, userName, "inc");
   };
 
   // handle unfollowing
   const unfollowHandler = () => {
     //Decrease follower in the followed user a/c
-    setFollowers(profile, activeUser.userName, "dec");
+    setFollowers(profile, loggedUser.userName, "dec");
 
     //Decrease following in the active user a/c
-    const activeUserProfile = allUsers[activeUser.userName];
+    const activeUserProfile = allUsers[loggedUser.userName];
     setFollowing(activeUserProfile, userName, "dec");
   };
 
@@ -104,24 +125,24 @@ const Profile = () => {
       <div className="profile">
         <div className="profile-details">
           <div className="profile-avatar">
-            {profile && profile.avatar ? (
-              <img src={profile.avatar} alt="avatar_img" />
+            {loggedUser && loggedUser.pic ? (
+              <img src={loggedUser.pic} alt="avatar_img" />
             ) : (
               <div className="avatar-text">
-                {profile?.name?.slice(0, 1).toUpperCase()}
+                {loggedUser?.username?.slice(0, 1).toUpperCase()}
               </div>
             )}
           </div>
-          <h3 className="profile-name m-xs m-x-0">{profile?.name}</h3>
+          <h3 className="profile-name m-xs m-x-0">{profile?.userName}</h3>
 
           <div className="profile-userName fw-500 secondary-text-color">
             @{userName}
           </div>
 
           {/* Follow   or unfollow button */}
-          {activeUser?.uid !== profile?.uid &&
+          {loggedUser?.uid !== profile?.uid &&
             (profile?.followers?.find(
-              (user) => user === activeUser?.userName
+              (user) => user === loggedUser?.userName
             ) ? (
               <button
                 className="btn btn-primary btn-outline m-s m-x-0"
@@ -139,7 +160,7 @@ const Profile = () => {
             ))}
 
           {/* Active user profile buttons */}
-          {activeUser?.uid === profile?.uid && (
+          {loggedUser?.uid === profile?.uid && (
             <div className="m-s m-x-0">
               <button
                 className="btn btn-primary mr-s"
@@ -147,9 +168,21 @@ const Profile = () => {
               >
                 Edit Profile
               </button>
-              <button className="btn btn-danger" onClick={signoutHanler}>
-                Log out
-              </button>
+              <div className="mt-5 flex">
+                {/* Back Button for logout */}
+                <Button
+                  type="button"
+                  // Styling for the logout button
+                  className="inline-flex items-center rounded-full border border-transparent bg-transparent text-text-color shadow-sm hover:bg-primary-shade focus:outline-none focus:ring-2 border-white p-2"
+                >
+                  {/* Render the logout icon */}
+                  <BiLogOut
+                    className="h-5 w-5"
+                    aria-hidden="true"
+                    handleLogout={handleLogout}
+                  />
+                </Button>
+              </div>
             </div>
           )}
 

@@ -1,9 +1,10 @@
-import "../Pages.css";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useContext, useState } from "react";
 import { MyContext } from "../../context/MyContext";
 import { useNavigate } from "react-router-dom";
 import { PostCard } from "../../components";
-import axios from "axios"; // Import axios for making HTTP requests
+import axios from "axios";
+import { Button } from "@chakra-ui/react"; // Import Chakra UI components
+import { AiOutlineBook } from "react-icons/ai"; // Import Chakra Icons
 import { API_URL } from "../../utils/config";
 
 const Bookmark = () => {
@@ -12,13 +13,11 @@ const Bookmark = () => {
   const [bookmarkedPosts, setBookmarkedPosts] = useState([]);
 
   useEffect(() => {
-    // Fetch bookmarked posts when the component mounts
     if (loggedUser) {
       fetchBookmarkedPosts();
     }
-  }, [loggedUser]); // Fetch only when loggedUser changes
+  }, [loggedUser]);
 
-  // Function to fetch bookmarked posts
   const fetchBookmarkedPosts = async () => {
     try {
       const response = await axios.get("/bookmark");
@@ -28,11 +27,9 @@ const Bookmark = () => {
     }
   };
 
-  // Function to handle bookmark toggle
   const handleBookmarkToggle = async (postId) => {
     try {
       const response = await axios.post(`/${API_URL}/bookmark`, { postId });
-      // Update bookmarked posts state based on response
       setBookmarkedPosts(response.data.bookmarks);
     } catch (error) {
       console.error("Error toggling bookmark:", error);
@@ -48,15 +45,24 @@ const Bookmark = () => {
     return (
       <div className="main-wrapper">
         <div className="text-white text-center">No posts added to bookmark</div>
-        <button className="btn btn-primary" onClick={() => navigate("/")}>
+        <Button
+          onClick={() => navigate("/")}
+          style={{ colorScheme: "primary" }}
+        >
           Add Some
-        </button>
+        </Button>
       </div>
     );
   }
 
   return (
     <div className="main-wrapper">
+      <div class="filter-head mb-6 d-center justify-content-between">
+        <h5>All</h5>
+        <Button leftIcon={<AiOutlineBook />} variant="link">
+          Filter
+        </Button>
+      </div>
       {bookmarkedPosts.map((post) => (
         <PostCard
           key={post.id}

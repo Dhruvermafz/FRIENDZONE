@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { MyContext } from "../../context/MyContext";
 import "../../utils/";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { BsThreeDots, BsBookmark, BsBookmarkFill } from "react-icons/bs"; // Import the bookmark icons
+import { BsThreeDots, BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import { toast } from "react-toastify";
 import {
   AiOutlineLike,
@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { HiOutlineUserCircle } from "react-icons/hi2";
 import { HiDotsHorizontal } from "react-icons/hi";
-// Define the Feed component
+
 const Feed = ({ feed }) => {
   // Define states and context
   const [showModal, setShowModal] = useState(false);
@@ -52,20 +52,18 @@ const Feed = ({ feed }) => {
     }
   };
 
-  // Effect hook to set initial state values
   useEffect(() => {
     setPostComments(feed.comments);
-    setIsBookmarked(feed.isBookmarked); // Set initial bookmark status
-    setIsOwner(feed.owner._id === loggedUser?._id); // Check if the logged user is the owner
+    setIsBookmarked(feed.isBookmarked);
+    setIsOwner(feed.owner._id === loggedUser?._id);
   }, []);
 
-  // Function to toggle bookmark
   const toggleBookmark = async () => {
     try {
       const response = await axios.post(
         `${API_BASE_URL}/post/toggle-bookmark/${feed._id}`
       );
-      setIsBookmarked(response.data.isBookmarked); // Update bookmark status
+      setIsBookmarked(response.data.isBookmarked);
     } catch (error) {
       console.log(error);
     }
@@ -73,7 +71,6 @@ const Feed = ({ feed }) => {
 
   // Function to handle edit action
   const handleEdit = () => {
-    // Implement edit logic here
     console.log("Edit");
   };
 
@@ -84,7 +81,6 @@ const Feed = ({ feed }) => {
   };
 
   const handleLike = () => {
-    // Implement logic to toggle like status and update backend
     setIsLiked(!isLiked);
   };
 
@@ -94,7 +90,7 @@ const Feed = ({ feed }) => {
   };
   const sharingHandler = (s) => {
     // console.log(`https://blogweet.vercel.app${s}`);
-    navigator.clipboard.writeText(`https://blogweet.vercel.app${s}`);
+    navigator.clipboard.writeText(`https://friendzone-social.vercel.app${s}`);
     toast.success(`Your link has been pasted to your Clipboard. Enjoy!`);
   };
   const openModal = () => {

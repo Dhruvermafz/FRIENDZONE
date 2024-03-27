@@ -68,15 +68,6 @@ const CreateGroup = () => {
       <Button colorScheme="teal" onClick={handleOpen}>
         + Create Zone
       </Button>
-      <FormControl mt={4}>
-        <FormLabel>Search</FormLabel>
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchValue}
-          onChange={handleSearchInputChange}
-        />
-      </FormControl>
 
       <Modal isOpen={isOpen} onClose={handleClose}>
         <ModalOverlay />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Flex,
@@ -15,22 +15,25 @@ import {
 } from "@chakra-ui/react";
 import { BsPencilSquare, BsTrash } from "react-icons/bs";
 import { HiDotsHorizontal, HiOutlineUserCircle } from "react-icons/hi";
-
+import "./Settings.css";
 const Settings = () => {
-  const getRandomRng = () => {
-    return Math.floor(Math.random() * 1000) + 0;
+  const [name, setName] = useState("Java World Group");
+  const [number, setNumber] = useState("(316) 555-0116");
+  const [email, setEmail] = useState("test@mail.com");
+  const [bio, setBio] = useState(
+    "Lorem ipsum dolor sit amet consectetur. Nec donec vestibulum eleifend lectus ipsum ultrices et dictum"
+  );
+
+  // Function to handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Logic to save changes goes here
+    console.log("Form submitted!");
   };
 
-  const randomImage = `https://picsum.photos/seed/${getRandomRng()}/1920/1080`;
   return (
     <div className="flex justify-start items-center flex-col h-screen h-[100%] sm:h-[100%] md:h-[100%]">
       <div className="relative w-full h-full">
-        <img
-          src={randomImage}
-          className="w-full h-full object-cover blur-sm"
-          loading="lazy"
-          alt="random bg"
-        />
         <Box className="col-xl-9 col-lg-8 cus-mar setting-row">
           <Box className="head-area mb-6 text-start">
             <Heading as="h5">Settings</Heading>
@@ -44,11 +47,7 @@ const Settings = () => {
                     <Heading as="h6">Profile Image</Heading>
                   </Box>
                   <Box className="profile-picture text-start">
-                    <img
-                      className="preview-image w-100"
-                      src="assets/images/profile-picture.png"
-                      alt="Preview Image"
-                    />
+                    {/* Render profile picture here */}
                   </Box>
                   <Box className="file-upload">
                     <label className="file text-start mt-2">
@@ -64,11 +63,7 @@ const Settings = () => {
                     <Heading as="h6">Cover Image</Heading>
                   </Box>
                   <Box className="profile-picture text-start">
-                    <img
-                      className="preview-image w-100"
-                      src="assets/images/profile-cover.png"
-                      alt="Preview Image"
-                    />
+                    {/* Render cover image here */}
                   </Box>
                   <Box className="file-upload">
                     <label className="file text-start mt-2">
@@ -84,7 +79,7 @@ const Settings = () => {
             <Box className="head-area mb-6">
               <Heading as="h6">General Information</Heading>
             </Box>
-            <form action="#" className="text-center d-grid gap-4">
+            <form onSubmit={handleSubmit} className="text-center d-grid gap-4">
               <Flex direction="column">
                 <Flex
                   direction={{ base: "column", md: "row" }}
@@ -97,7 +92,8 @@ const Settings = () => {
                       <Box className="input-area second">
                         <Input
                           type="text"
-                          defaultValue="Java World Group"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
                           placeholder="Type name"
                           autoComplete="off"
                         />
@@ -110,7 +106,8 @@ const Settings = () => {
                       <Box className="input-area second">
                         <Input
                           type="text"
-                          defaultValue="(316) 555-0116"
+                          value={number}
+                          onChange={(e) => setNumber(e.target.value)}
                           placeholder="Number"
                           autoComplete="off"
                         />
@@ -123,7 +120,8 @@ const Settings = () => {
                       <Box className="input-area second">
                         <Input
                           type="text"
-                          defaultValue="test@mail.com"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
                           placeholder="Email"
                           autoComplete="off"
                         />
@@ -133,10 +131,7 @@ const Settings = () => {
                   <Box flex="1">
                     <Box className="single-input text-start">
                       <Heading as="h6">Bio</Heading>
-                      <Text className="mdtxt mt-6">
-                        “Lorem ipsum dolor sit amet consectetur. Nec donec
-                        vestibulum eleifend lectus ipsum ultrices et dictum”.
-                      </Text>
+                      <Text className="mdtxt mt-6">{bio}</Text>
                     </Box>
                   </Box>
                 </Flex>
@@ -173,7 +168,9 @@ const Settings = () => {
                     </Menu>
                   </Box>
                   <Box ml={4}>
-                    <Button className="cmn-btn">Save Changes</Button>
+                    <Button type="submit" className="cmn-btn">
+                      Save Changes
+                    </Button>
                   </Box>
                 </Flex>
               </Flex>
