@@ -11,6 +11,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { MyContext } from "../context/MyContext";
+
 const CreatePost = () => {
   const { loggedUser, fetchPostAgain, setFetchPostAgain } =
     useContext(MyContext);
@@ -53,30 +54,44 @@ const CreatePost = () => {
   }
 
   return (
-    <Box p="4">
-      <Box display="flex" alignItems="center" mb="4">
-        <Avatar size="md" src={loggedUser?.pic} />
-        <Text ml="2">{loggedUser.username}</Text>
+    <Box>
+      {/* Banner with background image */}
+      <Box
+        bgImage="url('../assets/banner.png')"
+        bgSize="cover"
+        color="white"
+        p="4"
+        mb="4"
+        borderRadius="md"
+        boxShadow="md"
+      >
+        {/* Post creation form */}
+        <Box p="4" borderWidth="1px" borderRadius="md" boxShadow="md">
+          <Box display="flex" alignItems="center" mb="4">
+            <Avatar size="md" src={loggedUser?.pic} />
+            <Text ml="2">{loggedUser.username}</Text>
+          </Box>
+
+          <FormControl mb="4">
+            <FormLabel>Caption</FormLabel>
+            <Textarea
+              value={caption}
+              onChange={handleCaptionChange}
+              placeholder="Write a caption..."
+              size="sm"
+            />
+          </FormControl>
+
+          <FormControl mb="4">
+            <FormLabel>Upload Image/File</FormLabel>
+            <Input type="file" onChange={handleFileChange} />
+          </FormControl>
+
+          <Button colorScheme="blue" onClick={handleSubmit}>
+            Post
+          </Button>
+        </Box>
       </Box>
-
-      <FormControl mb="4">
-        <FormLabel>Caption</FormLabel>
-        <Textarea
-          value={caption}
-          onChange={handleCaptionChange}
-          placeholder="Write a caption..."
-          size="sm"
-        />
-      </FormControl>
-
-      <FormControl mb="4">
-        <FormLabel>Upload Image/File</FormLabel>
-        <Input type="file" onChange={handleFileChange} />
-      </FormControl>
-
-      <Button colorScheme="blue" onClick={handleSubmit}>
-        Post
-      </Button>
     </Box>
   );
 };

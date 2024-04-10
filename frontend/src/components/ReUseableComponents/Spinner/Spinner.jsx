@@ -1,12 +1,14 @@
-import "./Spinner.css";
-
-import { InfinitySpin } from "react-loader-spinner";
+import { Spinner as ChakraSpinner } from "@chakra-ui/react";
 
 const Spinner = () => {
   return (
-    <div className="spinner-wrapper">
-      <InfinitySpin color="#0445fc" />
-    </div>
+    <ChakraSpinner
+      thickness="4px"
+      speed="0.65s"
+      emptyColor="gray.200"
+      color="#0445fc"
+      size="xl"
+    />
   );
 };
 

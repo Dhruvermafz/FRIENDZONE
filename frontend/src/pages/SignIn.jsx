@@ -13,7 +13,8 @@ import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "../context/MyContext";
-import { REACT_APP_API_URL } from "../utils/config";
+import { API_URL } from "../utils/config";
+
 // Define the SignIn component
 const SignIn = () => {
   // State variables to hold the email and password entered by the user
@@ -36,7 +37,7 @@ const SignIn = () => {
     try {
       // Make a POST request to the server to log in the user
       const { data } = await axios.post(
-        `${REACT_APP_API_URL}/auth/login`,
+        `${API_URL}/auth/login`,
         {
           email,
           password,
@@ -90,7 +91,7 @@ const SignIn = () => {
 
         {/* Display the FormHeader component with appropriate props */}
         <FormHeader
-          headline="Log in to your account"
+          headline="Log in to your account" // Pass the headline prop
           text="create a new account"
           isUnderlined={true}
           to="/signup"

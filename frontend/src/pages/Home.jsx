@@ -2,7 +2,7 @@ import axios from "axios";
 import { Feed, PostContainer, Stories } from "../components";
 import { useContext, useEffect, useState } from "react";
 import { MyContext } from "../context/MyContext";
-import { API_BASE_URL } from "../utils/config";
+import { API_URL } from "../utils/config";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -11,7 +11,7 @@ export default function Home() {
   // Function to fetch posts from the server
   const fetchPosts = async () => {
     try {
-      const { data } = await axios.get(`${API_BASE_URL}/post/fetch-post`, {
+      const { data } = await axios.get(`${API_URL}/post/fetch-post`, {
         withCredentials: true,
       });
       setPosts(data.posts);
