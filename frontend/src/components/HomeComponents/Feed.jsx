@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import {
@@ -8,37 +8,35 @@ import {
   AiOutlineShareAlt,
 } from "react-icons/ai";
 import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
-import { HiDotsHorizontal, HiOutlineUserCircle } from "react-icons/hi";
+import { HiDotsHorizontal } from "react-icons/hi";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { MyContext } from "../../context/MyContext";
 import {
+  Avatar,
   Button,
+  Flex,
+  IconButton,
+  Image,
+  Input,
+  Spacer,
+  Text,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  Input,
-  Image,
-  Flex,
-  Text,
-  Avatar,
-  Spacer,
-  IconButton,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { API_BASE_URL } from "../../utils/config";
 import { toast } from "react-toastify";
-
+import { MyContext } from "../../context/MyContext";
 const Feed = ({ feed }) => {
   const [showModal, setShowModal] = useState(false);
   const [openComments, setOpenComments] = useState(false);
-  const { loggedUser } = useContext(MyContext);
   const [comment, setComment] = useState("");
   const [postComments, setPostComments] = useState([]);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [isOwner, setIsOwner] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-
+  const { loggedUser } = useContext(MyContext);
   const addComments = async () => {
     try {
       const response = await axios.post(

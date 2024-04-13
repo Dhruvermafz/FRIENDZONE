@@ -12,6 +12,7 @@ import Settings from "../components/Settings/Settings";
 import MyZone from "../pages/MyZone";
 import ForgotPassword from "../pages/ForgotPassword";
 import Error404 from "../pages/Error404";
+import EditProfile from "../pages/EditProfile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/settings",
         element: <Settings />,
+      },
+      {
+        path: `/settings/edit_profile/:username`,
+        element: <EditProfile />,
       },
     ],
   },
