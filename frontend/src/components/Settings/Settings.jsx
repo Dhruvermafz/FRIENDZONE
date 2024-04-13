@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   Box,
@@ -15,10 +15,11 @@ import {
 import CustomModal from "../CustomModal";
 import { avatarLabels } from "../../context/data/Labels";
 import Loading from "../Loading";
-
+import { MyContext } from "../../context/MyContext";
 const Settings = () => {
   const [open, setOpen] = useState(false);
-  const { userName } = useParams();
+  const { username } = useParams();
+  const { loggedUser } = useContext(MyContext);
   const history = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [isEdit, setIsEdit] = useState(false);
@@ -113,7 +114,7 @@ const Settings = () => {
   };
 
   const fetchProfile = () => {
-    const userid = localStorage.getItem("SocialGramUserId");
+    const userid = localStorage.getItem("FriendZoneUserId");
     // apiUser.getSingle(userid).then((res) => {
     //   if (res.status === "200") {
     //     setProfile(res.message);
@@ -131,7 +132,7 @@ const Settings = () => {
   }, []);
 
   const editUser = () => {
-    const userid = localStorage.getItem("SocialGramUserId");
+    const userid = localStorage.getItem("FriendZoneUserId");
 
     const response = {
       fname: profile.fname,
@@ -201,7 +202,7 @@ const Settings = () => {
               </Text>
             </TableCell>
             <TableCell>
-              <Link to={`/settings/edit_profile/${userName}`}>
+              <Link to={`/settings/edit_profile/${loggedUser?.username}`}>
                 <Button colorScheme="blue" {...buttonStyles}>
                   Edit Profile
                 </Button>

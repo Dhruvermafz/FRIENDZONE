@@ -23,7 +23,7 @@ import { API_BASE_URL } from "../../utils/config";
 
 const Profile = () => {
   const navigate = useNavigate();
-  const { userName } = useParams();
+  const { username } = useParams();
   const { loggedUser } = useContext(MyContext);
   const params = useParams();
   const toast = useToast();
@@ -36,7 +36,7 @@ const Profile = () => {
     const fetchUserProfile = async () => {
       try {
         const response = await axios.get(
-          `${API_BASE_URL}/user/${params.userName}`
+          `${API_BASE_URL}/user/${params.username}`
         );
         setUserProfile(response.data);
       } catch (error) {
@@ -45,7 +45,7 @@ const Profile = () => {
     };
 
     fetchUserProfile();
-  }, [params.userName]);
+  }, [params.username]);
 
   const handleLogout = async () => {
     try {
@@ -123,7 +123,7 @@ const Profile = () => {
             </Box>
             <Stack spacing={3} w="50%">
               <Heading mt={3} mb={4} style={{ colorScheme: "dark" }}>
-                {userProfile?.userName || loggedUser?.userName}
+                {userProfile?.username || loggedUser?.username}
               </Heading>
               <Flex mb={3} mt={2}>
                 <Flex me={4}>
@@ -145,7 +145,9 @@ const Profile = () => {
               </Flex>
               {loggedUser?.id === params.id && (
                 <Button
-                  onClick={() => navigate("/user/edit/" + loggedUser?.id)}
+                  onClick={() =>
+                    navigate(`/settings/edit_profile/${loggedUser?.username}`)
+                  }
                   style={{ colorScheme: "dark" }}
                 >
                   Edit profile
@@ -154,7 +156,7 @@ const Profile = () => {
               {loggedUser?.id !== params.id && (
                 <Button onClick={clickfollow} colorScheme="success">
                   <AiOutlineUserAdd />
-                  {userProfile?.followers?.includes(loggedUser?.userName)
+                  {userProfile?.followers?.includes(loggedUser?.username)
                     ? "Unfollow"
                     : "Follow"}
                 </Button>
