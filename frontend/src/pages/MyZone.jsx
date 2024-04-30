@@ -1,55 +1,68 @@
-import { useEffect, useContext, useState } from "react";
-import axios from "axios";
-import { MyContext } from "../context/MyContext";
-import { Container, Heading } from "@chakra-ui/react";
-import CreateGroup from "../components/MyZone/Zone/CreateGroup";
-import { API_BASE_URL } from "../utils/config";
-import TabsComponent from "../components/MyZone/TabsComponent";
-import Group from "../components/MyZone/Group";
-const GroupComponent = () => {
-  const { setZone, socket } = useContext(MyContext);
-  const [groups, setGroups] = useState([]);
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Box, Text, Divider, Button, Flex } from "@chakra-ui/react";
+import Loading from "../components/Loading";
+import groupsData from "../constants/group.json";
 
-  const fetchGroups = async () => {
-    try {
-      const { data } = await axios.get(`${API_BASE_URL}/groups`, {
-        withCredentials: true,
-      });
-      setGroups(data.groups);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+const GroupComponent = () => {
+  const [groups, setGroups] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchGroups();
+    // Simulate fetching groups data from JSON file
+    fetchAllGroups();
   }, []);
 
-  useEffect(() => {
-    socket.on("new groups", () => {
-      fetchGroups();
-    });
-  }, [socket]);
+  const fetchAllGroups = () => {
+    // Simulate fetching groups data
+    setTimeout(() => {
+      setGroups(groupsData);
+      setIsLoading(false);
+    }, 1000);
+  };
 
   return (
-    <Container maxW="container.xl">
-      <Heading as="h1" mb="5">
-        Group
-      </Heading>
-      <CreateGroup />
-      <TabsComponent />
-      <div className="row">
-        {groups.map((group) => (
-          <div className="col-xl-4 col-sm-6 col-8" key={group._id}>
-            <Group
-              groupName={group.name}
-              groupType={group.type}
-              memberCount={group.members.length}
-            />
-          </div>
-        ))}
-      </div>
-    </Container>
+    <Box p={6} bg="gray.100" borderRadius="md">
+      <Text fontSize="3xl" mb={2} color="blue.800">
+        All Groups
+      </Text>
+      <Divider mb={4} />
+      <Button as={Link} to="/create-group" colorScheme="green" mb={4}>
+        Create New Group
+      </Button>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Flex flexWrap="wrap" justifyContent="space-between">
+          {groups.map((group) => (
+            <Box
+              key={group.id}
+              width={{
+                base: "100%",
+                sm: "calc(50% - 12px)",
+                md: "calc(33.33% - 12px)",
+              }}
+              mb={4}
+            >
+              <Box p={4} bg="white" boxShadow="md" borderRadius="md">
+                <img src={group.photo} alt={group.name} />
+                <Text fontWeight="bold" fontSize="lg" mt={2}>
+                  {group.name}
+                </Text>
+                <Text fontSize="sm" color="gray.500">
+                  {group.description}
+                </Text>
+                <Link to={`/groups/${group.id}`}>
+                  <Button mt={2} colorScheme="blue">
+                    View Group
+                  </Button>
+                </Link>
+              </Box>
+            </Box>
+          ))}
+        </Flex>
+      )}
+    </Box>
   );
 };
 

@@ -1,101 +1,144 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
-  Avatar,
+  Box,
   Button,
-  Divider,
-  Flex,
-  Heading,
+  FormControl,
+  FormLabel,
   Input,
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList,
   Text,
-  Textarea,
+  Divider,
 } from "@chakra-ui/react";
-import {
-  MdClose,
-  MdEdit,
-  MdMoreHoriz,
-  MdPerson,
-  MdPublic,
-  MdShare,
-} from "react-icons/md";
-
+import { MyContext } from "../context/MyContext";
+import Loading from "../components/Loading";
 const EditProfile = () => {
+  const { username } = useParams();
+  const { loggedUser } = useContext(MyContext);
+  const history = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
+  const [profile, setProfile] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    dateOfBirth: "",
+    gender: "",
+    contactNumber: "",
+    about: "",
+  });
+
+  useEffect(() => {
+    // Simulating loading data
+    setTimeout(() => {
+      setProfile({
+        firstName: "John",
+        lastName: "Doe",
+        email: "john.doe@example.com",
+        dateOfBirth: "1990-01-01",
+        gender: "Male",
+        contactNumber: "1234567890",
+        about: "Lorem ipsum dolor sit amet.",
+      });
+      setIsLoading(false);
+    }, 2000);
+  }, []);
+
+  const handleInputChange = (event) => {
+    setProfile({
+      ...profile,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Add logic to submit profile changes
+    console.log("Profile updated:", profile);
+    history(`/settings/${loggedUser?.username}`);
+  };
+
   return (
-    <main className="main-content">
-      <div className="container">
-        <div className="row">
-          <div className="col-xxl-3 col-xl-3 col-lg-4">
-            {/* Profile Sidebar */}
-          </div>
-          <div className="col-xl-9 col-lg-8 cus-mar setting-row">
-            <div className="head-area mb-6 text-start">
-              <Heading as="h5">Settings</Heading>
-            </div>
-            <div className="single-box p-sm-5 p-3">
-              <div className="row gap-6">
-                <div className="col-xxl-2 col-md-3 col-sm-5 col-6 pe-0">
-                  <div className="upload-single">
-                    {/* Profile Image Section */}
-                  </div>
-                </div>
-                <div className="col-md-12">
-                  <div className="upload-single cover-img">
-                    {/* Cover Image Section */}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="single-box text-start p-sm-5 p-3">
-              <div className="head-area mb-6">
-                <Heading as="h6">General Information</Heading>
-              </div>
-              <form action="#" className="text-center d-grid gap-4">
-                <div className="row">
-                  <div className="col-sm-6">
-                    <div className="single-input text-start">
-                      <label htmlFor="name">Name</label>
-                      {/* Name Input */}
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="single-input text-start">
-                      <label htmlFor="number">Number</label>
-                      {/* Number Input */}
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="single-input text-start">
-                      <label htmlFor="email">Email</label>
-                      {/* Email Input */}
-                    </div>
-                  </div>
-                  <div className="col-sm-7 col-9 mt-4">
-                    <div className="single-input text-start">
-                      <Heading as="h6">Bio</Heading>
-                      {/* Bio Input */}
-                    </div>
-                  </div>
-                  <div className="col-sm-5 col-3 mt-4 d-center justify-content-end">
-                    <div className="single-input d-center text-start">
-                      {/* Privacy and More Options */}
-                    </div>
-                  </div>
-                  <div className="col-sm-12 mt-4">
-                    <div className="btn-area text-end">
-                      {/* Save Changes Button */}
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
+    <Box p={6} bg="gray.100" borderRadius="md">
+      <Text fontSize="3xl" mb={2} color="blue.800">
+        Edit Profile
+      </Text>
+      <Divider mb={4} />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <FormControl mb={4}>
+            <FormLabel>First Name</FormLabel>
+            <Input
+              type="text"
+              name="firstName"
+              value={profile.firstName}
+              onChange={handleInputChange}
+            />
+          </FormControl>
+          <FormControl mb={4}>
+            <FormLabel>Last Name</FormLabel>
+            <Input
+              type="text"
+              name="lastName"
+              value={profile.lastName}
+              onChange={handleInputChange}
+            />
+          </FormControl>
+          <FormControl mb={4}>
+            <FormLabel>Email</FormLabel>
+            <Input
+              type="email"
+              name="email"
+              value={profile.email}
+              onChange={handleInputChange}
+              disabled
+            />
+          </FormControl>
+          <FormControl mb={4}>
+            <FormLabel>Date of Birth</FormLabel>
+            <Input
+              type="date"
+              name="dateOfBirth"
+              value={profile.dateOfBirth}
+              onChange={handleInputChange}
+            />
+          </FormControl>
+          <FormControl mb={4}>
+            <FormLabel>Gender</FormLabel>
+            <Input
+              type="text"
+              name="gender"
+              value={profile.gender}
+              onChange={handleInputChange}
+            />
+          </FormControl>
+          <FormControl mb={4}>
+            <FormLabel>Contact Number</FormLabel>
+            <Input
+              type="tel"
+              name="contactNumber"
+              value={profile.contactNumber}
+              onChange={handleInputChange}
+            />
+          </FormControl>
+          <FormControl mb={4}>
+            <FormLabel>About</FormLabel>
+            <Input
+              type="text"
+              name="about"
+              value={profile.about}
+              onChange={handleInputChange}
+            />
+          </FormControl>
+          <Button type="submit" colorScheme="blue">
+            Save Changes
+          </Button>
+          <Link to={`/settings/${loggedUser?.username}`}>
+            <Button ml={4}>Cancel</Button>
+          </Link>
+        </form>
+      )}
+    </Box>
   );
 };
 

@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Nature Lovers",
+    "description": "A group for those who love to explore nature.",
+    "photo": "https://imgs.search.brave.com/ztFoBkzl7uOx3bkVamMNgHq1hmbXlzVd6QMOfJPLGXk/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAyLzM3LzQ0LzQ0/LzM2MF9GXzIzNzQ0/NDQ1Ml92QU05NWU5/dkF6Z1o3ekRJdVB1/UjBxUGVtSnlvc3ZC/ZC5qcGc"
+  },
+  {
+    "id": 2,
+    "name": "Travel Enthusiasts",
+    "description": "A group for passionate travelers.",
+    "photo": "https://imgs.search.brave.com/ohBpDk2em7Ev1n-un8WZkqv0v_m28J2-0YXpxaENRhQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly92YXN0/dG91cmlzdC5jb20v/d3AtY29udGVudC91/cGxvYWRzLzIwMjIv/MTAvdHJhdmVsLWVu/dGh1c2lhc3Qtc2Nh/bGVkLndlYnA"
+  },
+  {
+    "id": 3,
+    "name": "Foodies Club",
+    "description": "For all the food lovers out there!",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjGVDdsaD8eqJwZOqHm-8Cob6KPP_E6952VM_LScnyMA&s"
+  }
+]

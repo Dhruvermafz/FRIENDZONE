@@ -30,13 +30,11 @@ Friendzone is a full stack aplication, where users can connect with others, shar
 - Realtime Storage
 
   - All posts are stored in real time
-
 - Authentication:
 
   - User Signup
   - User Signin
   - User Signout
-
 - Fully Responsive
 
 ## Getting Started
@@ -69,30 +67,31 @@ Any contributions you make are **greatly appreciated**.
    ```sh
    git clone https://github.com/Dhruvermafz/FRIENDZONE.git
    ```
-
 3. Create your feature branch.
 
    ```sh
    git branch feature
    ```
-
    Do checkout to it
 
    ```sh
    git checkout feature
    ```
-
 4. Commit your changes
 
    ```sh
    git add .
    git commit -m "Add your commit message here"
    ```
-
 5. Push the branch
 
    ```sh
    git push origin feature
    ```
-
 6. Open a Pull Request.
+
+   ### Architecture Diagram
+
+   Below is a high-level diagram that illustrates the architecture of the StudyNotion EdTech platform:
+
+   ![Architecture](img/arcti.png)
