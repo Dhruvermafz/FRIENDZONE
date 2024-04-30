@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Button,
@@ -17,7 +17,7 @@ const CreatePost = () => {
   const { loggedUser } = useContext(MyContext);
   const [caption, setCaption] = useState("");
   const [file, setFile] = useState(null);
-  const history = useHistory();
+  const history = useNavigate();
   const toast = useToast();
 
   const handleCaptionChange = (event) => {
