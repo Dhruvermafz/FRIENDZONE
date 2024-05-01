@@ -24,7 +24,7 @@ const Topbar = () => {
                 {/* ButtonLink component with a PlusIcon */}
                 <ButtonLink
                   text=""
-                  to="/create-post"
+                  to="/zone/create"
                   Icon={<PlusIcon width="16px" height="16px" />}
                 />
               </div>

@@ -13,6 +13,9 @@ import MyZone from "../pages/MyZone";
 import ForgotPassword from "../pages/ForgotPassword";
 import Error404 from "../pages/Error404";
 import EditProfile from "../pages/EditProfile";
+import CreateGroupPage from "../pages/CreateGroup";
+import CreateZonePage from "../pages/CreateGroup";
+import GroupPage from "../pages/ZoneSingle";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -57,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: `/settings/edit_profile/:username`,
         element: <EditProfile />,
+      },
+      {
+        path: "/zone/create",
+        element: <CreateZonePage />,
       },
     ],
   },

@@ -27,7 +27,7 @@ const GroupComponent = () => {
         All Groups
       </Text>
       <Divider mb={4} />
-      <Button as={Link} to="/create-group" colorScheme="green" mb={4}>
+      <Button as={Link} to="/zone/create" colorScheme="green" mb={4}>
         Create New Group
       </Button>
       {isLoading ? (
