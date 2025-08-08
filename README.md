@@ -92,6 +92,6 @@ Any contributions you make are **greatly appreciated**.
 
    ### Architecture Diagram
 
-   Below is a high-level diagram that illustrates the architecture of the StudyNotion EdTech platform:
+   Below is a high-level diagram that illustrates the architecture of the FRIENDZONE platform:
 
    ![Architecture](img/arcti.png)
